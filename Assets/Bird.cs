@@ -4,7 +4,6 @@ using System.Collections;
 public class Bird : MonoBehaviour {
 
 	private Rigidbody2D rb;
-	public int lives = 5;
 	private Vector3 spawnPoint;
 	private bool alive = true;
 
@@ -34,13 +33,9 @@ public class Bird : MonoBehaviour {
 		alive = false;
 		GetComponent<Renderer> ().enabled = false;
 		yield return new WaitForSeconds(5f);
-		if (lives > 0) {
-			lives--;
-			transform.position = spawnPoint;
-			transform.rotation = Quaternion.identity;
-			GetComponent<Renderer> ().enabled = true;
-			alive = true;
-		} else
-			print ("Game Over");
+		transform.position = spawnPoint;
+		transform.rotation = Quaternion.identity;
+		GetComponent<Renderer> ().enabled = true;
+		alive = true;
 	}
 }
