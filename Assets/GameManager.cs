@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     public GameObject player;//Player reference
     public ScoreManager scoreManage;
 
+
     void Awake() {
         //Check if instance already exists
         if (instance == null) {
