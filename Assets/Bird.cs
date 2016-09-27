@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Bird : MonoBehaviour {
 
+	public GameObject poop;
+
 	private Rigidbody2D rb;
 	private Vector3 spawnPoint;
 	private bool alive = true;
@@ -20,6 +22,11 @@ public class Bird : MonoBehaviour {
 			if (Input.GetAxis ("Vertical") > 0)
 				rb.AddForce (transform.up * 15 * Input.GetAxis ("Vertical"));
 			Camera.main.transform.position -= new Vector3 (((Camera.main.transform.position.x - transform.position.x) / 10), ((Camera.main.transform.position.y - transform.position.y) / 10), 0);
+
+			if (Input.GetButtonDown ("Poop")) {
+				GameObject newDrop = (GameObject)Instantiate (poop, transform.position + (-Vector3.up * 0.5f), Quaternion.identity);
+				Physics2D.IgnoreCollision (GetComponent<Collider2D> (), newDrop.GetComponent<Collider2D> ());
+			}
 		}
 	}
 
