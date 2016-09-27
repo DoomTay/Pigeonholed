@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour {
     public GameObject player;//Player reference
     public ScoreManager scoreManage;
 
-    public GameObject[] ground = new GameObject[3];
-
     void Awake() {
         //Check if instance already exists
         if (instance == null) {
@@ -23,14 +21,24 @@ public class GameManager : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Start() {
+
+    }
+
+    // Update is called once per frame
+    void Update() {
         RestartWithR();
-	}
+        ChkNulls();
+    }
+
+    void ChkNulls() {
+        if (player == null) {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (scoreManage == null) {
+            scoreManage = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+        }
+    }
 
     //Restart with R
     void RestartWithR() {
